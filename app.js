@@ -17,7 +17,7 @@ const progress = require('./route/progress.js')
 const forgot = require('./route/forgot.js')
 const download = require('./route/download.js')
 const port = process.env.port || 3000
-const logs = fs.createWriteStream(path.join(__dirname,'status.log'),{flags : 'a'})
+const logs = fs.createWriteStream(path.join(__dirname,'access.log'),{flags : 'a'})
 require('./model/model.js')
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
@@ -47,4 +47,5 @@ sequelize.sync({ alter: true }).then(() => {
     app.listen(port, () => {
         console.log(`Listening at http://localhost:${port}`)
     })
+
 }).catch((e) => { console.log(e) })
