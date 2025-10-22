@@ -121,7 +121,7 @@ window.addEventListener('load', async () => {
         select.appendChild(op1)
         select.addEventListener('change', () => {
             localStorage.removeItem('token')
-            window.location.href = 'http://localhost:1000/'
+            window.location.href = 'http://3.111.53.35/'
         })
         document.querySelector('#div1').appendChild(select)
         pro = data.data.data[0]
@@ -289,30 +289,32 @@ document.querySelector('#expenses').addEventListener('click', async (event) => {
     document.querySelector('#dashboard').appendChild(form)
     document.querySelector('#dashboard').appendChild(ul)
     await expenses(0, 4)
-    const button = document.createElement('button')
-    button.innerHTML = 'Download'
-    button.id = 'submit'
-    button.addEventListener('click',async ()=>{
-        try
-        {
-            const response = await axios.get('/download',{
-                headers : {
-                    Authorization : `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            const a = document.createElement('a')
-            a.href = response.data.data.Location
-            a.download = 'expenses.txt'
-            a.click()
-            console.log(response.data.data)
-        }
-        catch(e)
-        {
-            console.log(e)
-        }
-    })
-    button.style = 'position:absolute;bottom:60px;right:80px;padding:20px;'
-    document.querySelector('#dashboard').appendChild(button)
+    if (pro != false) {
+        const button = document.createElement('button')
+        button.innerHTML = 'Download'
+        button.id = 'submit'
+        button.addEventListener('click',async ()=>{
+            try
+            {
+                const response = await axios.get('/download',{
+                    headers : {
+                        Authorization : `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                const a = document.createElement('a')
+                a.href = response.data.data.Location
+                a.download = 'expenses.txt'
+                a.click()
+                console.log(response.data.data)
+            }
+            catch(e)
+            {
+                console.log(e)
+            }
+        })
+        button.style = 'position:absolute;bottom:60px;right:80px;padding:20px;'
+        document.querySelector('#dashboard').appendChild(button)
+    }
 })
 
 document.querySelector('#board').addEventListener('click', async (event) => {
