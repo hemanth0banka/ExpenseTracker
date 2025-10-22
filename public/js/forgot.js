@@ -7,7 +7,7 @@ document.querySelector('form').addEventListener('submit',async (event)=>{
         })
         
         alert('password reset link has sent to your email. if your email was registered')
-        window.location.href = `http://localhost:1000/`;
+        window.location.href = `http://3.111.53.35/`;
     }
     catch(e)
     {

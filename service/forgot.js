@@ -23,7 +23,7 @@ const postService = async (email)=>{
             userUserId : user.userId
         })
 
-        const link = `http://localhost:${process.env.port}/forgot/${id}`
+        const link = `http://3.111.53.35/forgot/${id}`
 
         const client = Sib.ApiClient.instance;
         const apiKey = client.authentications['api-key'];

@@ -28,7 +28,7 @@ const postService = async (t,a,c,i,p)=>{
                 "customer_phone": p
             },
             "order_meta": {
-                "return_url": `http://localhost:1000/pro/buy/${i}`,
+                "return_url": `http://3.111.53.35/pro/buy/${i}`,
                 "payment_methods": "cc,dc,upi"
             },
             "order_expiry_time": new Date(Date.now() + 1000 *60 *60).toISOString()
