@@ -3,12 +3,15 @@ function nos(f, p, c, n, l) {
     const div = document.createElement('div')
     div.id = 'pno'
     const first = document.createElement('button')
+    //first.style = "position : absoulte;left:45%;"
     const prev = document.createElement('button')
-    prev.style = "background-color:gold;color:white;"
+    prev.style = "background-color : lightgray"
     const last = document.createElement('button')
+    //last.style = "position : absoulte;left:55%;"
     const next = document.createElement('button')
-    prev.style = "background-color:gold;color:white;"
+    next.style = "background-color : lightgray"
     const current = document.createElement('button')
+    current.style = "background-color : white;box-shadow : 0px 0px 2px rgb(86, 86, 86);border-color: lightgray;"
     first.addEventListener('click', (event) => { expenses(Number(f) - 1, document.querySelector('#no').value) })
     prev.addEventListener('click', (event) => { expenses(Number(c) - 2, document.querySelector('#no').value) })
     last.addEventListener('click', (event) => { expenses(Number(l) - 1, document.querySelector('#no').value) })
@@ -22,7 +25,6 @@ function nos(f, p, c, n, l) {
         div.appendChild(prev)
     }
     current.innerHTML = c
-    current.style = "background-color:gray"
     div.appendChild(current)
     if (n > c && n <= l) {
         next.innerHTML = ' >> '
@@ -189,24 +191,37 @@ document.querySelector('#home').addEventListener('click', async (event) => {
     add.addEventListener('click', () => {
         const form = document.createElement('form')
         const label = document.createElement('label')
-        label.innerHTML = 'amount'
+        label.innerHTML = 'Amount'
         const input = document.createElement('input')
         const label2 = document.createElement('label')
-        label2.innerHTML = 'description'
+        label2.innerHTML = 'Description'
         const input2 = document.createElement('input')
         const label3 = document.createElement('label')
-        label3.innerHTML = 'category'
-        const input3 = document.createElement('input')
+        label3.innerHTML = 'Category'
+        const input3 = document.createElement('select')
+        const option1 = document.createElement('option')
+        option1.innerHTML = 'Movie'
+        option1.value = 'Movie'
+        const option2 = document.createElement('option')
+        option2.innerHTML = 'Fuel'
+        option2.value = 'Fuel'
+        const option3 = document.createElement('option')
+        option3.innerHTML = 'Electricity'
+        option3.value = 'Electricity'
         const ok = document.createElement('button')
         ok.innerHTML = 'ok'
         ok.type = 'submit'
         ok.id = 'submit'
+        form.id = 'new'
         const cancel = document.createElement('button')
         cancel.innerHTML = 'cancel'
         cancel.id = 'cancel'
         cancel.addEventListener('click', () => {
             document.querySelector('#dashboard').removeChild(form)
         })
+        input3.appendChild(option1)
+        input3.appendChild(option2)
+        input3.appendChild(option3)
         form.appendChild(label)
         form.appendChild(input)
         form.appendChild(label2)
@@ -291,14 +306,13 @@ document.querySelector('#expenses').addEventListener('click', async (event) => {
     await expenses(0, 4)
     if (pro != false) {
         const button = document.createElement('button')
-        button.innerHTML = 'Download'
+        button.innerHTML = ' 🡻 Download'
         button.id = 'submit'
-        button.addEventListener('click',async ()=>{
-            try
-            {
-                const response = await axios.get('/download',{
-                    headers : {
-                        Authorization : `Bearer ${localStorage.getItem('token')}`
+        button.addEventListener('click', async () => {
+            try {
+                const response = await axios.get('/download', {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 })
                 const a = document.createElement('a')
@@ -307,12 +321,11 @@ document.querySelector('#expenses').addEventListener('click', async (event) => {
                 a.click()
                 console.log(response.data.data)
             }
-            catch(e)
-            {
+            catch (e) {
                 console.log(e)
             }
         })
-        button.style = 'position:absolute;bottom:60px;right:80px;padding:20px;'
+        button.style = 'position:absolute;bottom:90px;right:100px;padding:20px;box-shadow : 0px 0px 5px rgb(176, 176, 176);'
         document.querySelector('#dashboard').appendChild(button)
     }
 })

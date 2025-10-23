@@ -2,22 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login Page</title>
 </head>
 
 <body>
-    <h1>Login In</h1>
-    <form>
-        <label for="username"> UserName : </label><input type="text" id="username" name="username"><br />
-        <label for="password"> Password : </label><input type="password" id="password" name="password"><br />
-        <button type="submit">Login</button>
-    </form>
-
-    <a href="/pages/signup.html">Create Account . SignUp</a><br/>
-    <a href="/pages/forgot.html">Forgotten Password</a>
+    <div>
+        
+        
+        <h1>Expense Tracker</h1>
+        <form>
+            <input type="text" id="username" name="username" placeholder="Enter username...">
+            <input type="password" id="password" name="password" placeholder="Enter Password...">
+            <button type="submit">Login</button>
+        </form>
+    
+        
+        
+    </div>
+    <span id="links">
+            <a href="/pages/signup.html">Create Account ? SignUp</a><br />
+            <a href="/pages/forgot.html">Forgotten Password !</a>
+        </span>
+    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios@1.12.2/dist/axios.min.js"></script>
 <script src="/js/login.js"></script>
+
 </html>
