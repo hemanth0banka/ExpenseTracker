@@ -533,6 +533,7 @@ document.querySelector('#ai').addEventListener('click', async (event) => {
         const form = document.createElement('form')
         form.id = 'ask'
         const input = document.createElement('textarea')
+        input.placeholder = 'Ask me anything ...'
         input.cols = 100
         input.rows = 0
         input.name = 'prompt'
