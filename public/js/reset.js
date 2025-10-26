@@ -8,7 +8,7 @@ document.querySelector('form').addEventListener('submit',async (event)=>{
             password : event.target.new.value
         })
         alert(result.data.data)
-        window.location.href = `http://3.111.53.35/`;
+        window.location.href = `http://13.201.187.41/`;
     }
     catch(e)
     {

@@ -123,7 +123,7 @@ window.addEventListener('load', async () => {
         select.appendChild(op1)
         select.addEventListener('change', () => {
             localStorage.removeItem('token')
-            window.location.href = 'http://3.111.53.35/'
+            window.location.href = 'http://13.201.187.41/'
         })
         document.querySelector('#div1').appendChild(select)
         pro = data.data.data[0]

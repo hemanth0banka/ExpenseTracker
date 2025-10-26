@@ -14,7 +14,7 @@ document.querySelector('form').addEventListener('submit',async (event)=>{
             password : event.target.password.value
         })
         alert('user created')
-        window.location.href = `http://3.111.53.35/`;
+        window.location.href = `http://13.201.187.41/`;
     }
     catch(e)
     {
