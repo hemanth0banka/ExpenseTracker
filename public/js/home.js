@@ -390,8 +390,8 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
         div2.innerHTML = ''
         try {
             let result = await axios.post('/progress', {
-                start: new Date(),
-                end: new Date(Date.now() - (1000 * 60 * 60 * 24))
+                end: new Date(),
+                start: new Date(Date.now() - (1000 * 60 * 60 * 24))
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -412,8 +412,8 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
         div2.innerHTML = ''
         try {
             let result = await axios.post('/progress', {
-                start: new Date(),
-                end: new Date(Date.now() - (1000 * 60 * 60 * 24 * 7))
+                end: new Date(),
+                start: new Date(Date.now() - (1000 * 60 * 60 * 24 * 7))
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -435,8 +435,8 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
         div2.innerHTML = ''
         try {
             let result = await axios.post('/progress', {
-                start: new Date(),
-                end: new Date(Date.now() - (1000 * 60 * 60 * 24 * 7 * 30))
+                end: new Date(),
+                start: new Date(Date.now() - (1000 * 60 * 60 * 24 * 30))
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -458,8 +458,8 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
         div2.innerHTML = ''
         try {
             let result = await axios.post('/progress', {
-                start: new Date(),
-                end: new Date(Date.now() - (1000 * 60 * 60 * 24 * 7 * 30 * 12))
+                end: new Date(),
+                start: new Date(Date.now() - (1000 * 60 * 60 * 24 * 365))
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -489,14 +489,16 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
         button.innerHTML = 'ok'
         button.type = 'submit'
         button.id = 'submit'
-        from.type = 'Date'
-        to.type = 'Date'
+        from.name = 'from'
+        from.type = 'date'
+        to.type = 'date'
+        to.name = 'to'
         form.addEventListener('submit', async (event) => {
             event.preventDefault()
             try {
                 let result = await axios.post('/progress', {
-                    start: from,
-                    end: to
+                    start: new Date(event.target.from.value), 
+                    end: new Date(event.target.to.value)   
                 }, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
