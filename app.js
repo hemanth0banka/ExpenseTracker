@@ -45,6 +45,6 @@ app.use((req, res) => {
 })
 sequelize.sync({ alter: true }).then(() => {
     app.listen(port, () => {
-        console.log(`Listening at http://3.111.53.35`)
+        console.log(`Listening at http://13.232.69.212`)
     })
 }).catch((e) => { console.log(e) })
