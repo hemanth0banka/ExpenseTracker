@@ -23,7 +23,7 @@ const postService = async (email)=>{
             userUserId : user.userId
         })
 
-        const link = `http://13.201.187.41/forgot/${id}`
+        const link = `http://13.232.69.212/forgot/${id}`
 
         const client = Sib.ApiClient.instance;
         const apiKey = client.authentications['api-key'];
