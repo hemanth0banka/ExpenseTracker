@@ -3,11 +3,9 @@ function nos(f, p, c, n, l) {
     const div = document.createElement('div')
     div.id = 'pno'
     const first = document.createElement('button')
-    //first.style = "position : absoulte;left:45%;"
     const prev = document.createElement('button')
     prev.style = "background-color : lightgray"
     const last = document.createElement('button')
-    //last.style = "position : absoulte;left:55%;"
     const next = document.createElement('button')
     next.style = "background-color : lightgray"
     const current = document.createElement('button')
@@ -123,7 +121,7 @@ window.addEventListener('load', async () => {
         select.appendChild(op1)
         select.addEventListener('change', () => {
             localStorage.removeItem('token')
-            window.location.href = 'http://13.232.69.212/'
+            window.location.href = 'http://localhost:1000/'
         })
         document.querySelector('#div1').appendChild(select)
         pro = data.data.data[0]
@@ -163,7 +161,11 @@ window.addEventListener('load', async () => {
 
                         console.log("Payment has been completed, Check for Payment Status");
                         console.log(result.paymentDetails.paymentMessage);
-                        let a = await axios.get(`/pro/buy/${orderId}`)
+                        let a = await axios.get(`/pro/buy/${orderId}`, {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('token')}`
+                            }
+                        })
                         alert(`your Payment ${a.data.data}`)
                         pro = true
                     }
@@ -336,7 +338,11 @@ document.querySelector('#board').addEventListener('click', async (event) => {
         return 0
     }
     try {
-        let users = await axios.get('/rank')
+        let users = await axios.get('/rank', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
         console.log(users)
         const table = document.createElement('table')
         const thead = document.createElement('thead')
@@ -497,8 +503,8 @@ document.querySelector('#progress').addEventListener('click', async (event) => {
             event.preventDefault()
             try {
                 let result = await axios.post('/progress', {
-                    start: new Date(event.target.from.value), 
-                    end: new Date(event.target.to.value)   
+                    start: new Date(event.target.from.value),
+                    end: new Date(event.target.to.value)
                 }, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`

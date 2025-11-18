@@ -1,9 +1,8 @@
 const data = require('../model/data.js') 
 const jwt = require('jsonwebtoken') 
 const { Op } = require('sequelize')
-const postService = async (t, start, end) => {
+const postService = async (token, start, end) => {
   try {
-    const token = jwt.verify(t, process.env.securitykey)
     const startDate = new Date(start)
     startDate.setHours(0, 0, 0, 0)
     const endDate = new Date(end)    

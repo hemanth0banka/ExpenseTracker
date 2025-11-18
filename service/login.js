@@ -5,7 +5,7 @@ const postService = async (username, pass) => {
     try {
         let r = await users.findOne({
             where: {
-                username: username
+                email: username
             }
         })
         if (!r) {

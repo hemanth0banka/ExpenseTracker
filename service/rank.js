@@ -1,18 +1,16 @@
 const users = require('../model/users.js')
-const getService = async ()=>{
-    try
-    {
+const getService = async () => {
+    try {
         let result = await users.findAll(
             {
-                order : [['total','DESC']]
+                order: [['total', 'DESC']]
             }
         )
         console.log(result)
         return result
     }
-    catch(e)
-    {
+    catch (e) {
         throw e
     }
 }
-module.exports = {getService}
+module.exports = { getService }

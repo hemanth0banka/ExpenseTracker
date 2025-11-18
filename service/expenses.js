@@ -1,12 +1,10 @@
-const jwt = require('jsonwebtoken')
 const data = require('../model/data.js')
 const users = require('../model/users.js')
-const getService = async (token, l, p) => {
+const getService = async (t, l, p) => {
     try {
         let limit = Number(l)
         let page = Number(p)
-        const offset = page  * limit
-        let t = jwt.verify(token, process.env.securitykey)
+        const offset = page * limit
         let d = await data.findAndCountAll({
             where: {
                 userUserId: t.userId
@@ -27,52 +25,45 @@ const getService = async (token, l, p) => {
         throw e
     }
 }
-const postService = async (t,a,d,c)=>{
-    try
-    {
-        let token = jwt.verify(t, process.env.securitykey)
+const postService = async (token, a, d, c) => {
+    try {
         let newExpense = await data.create({
-            amount : a,
-            description : d,
-            category : c,
-            userUserId : token.userId
+            amount: a,
+            description: d,
+            category: c,
+            userUserId: token.userId
         })
         let user = await users.findOne({
-            where : {
-                userId : token.userId
+            where: {
+                userId: token.userId
             }
         })
         user.total += Number(a)
         await user.save()
         return newExpense
     }
-    catch(e)
-    {
+    catch (e) {
         throw e
     }
 }
-const deleteService = async (t,id,a)=>{
-    try
-    {
-        let token = jwt.verify(t, process.env.securitykey)
-
+const deleteService = async (token, id, a) => {
+    try {
         let d = await data.destroy({
-            where : {
-                id : id
+            where: {
+                id: id
             }
         })
         let user = await users.findOne({
-            where : {
-                userId : token.userId
+            where: {
+                userId: token.userId
             }
         })
         user.total -= Number(a)
         await user.save()
         return 'ok'
     }
-    catch(e)
-    {
+    catch (e) {
         throw e
     }
 }
-module.exports = { getService ,postService,deleteService}
+module.exports = { getService, postService, deleteService }

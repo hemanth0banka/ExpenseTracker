@@ -8,7 +8,7 @@ document.querySelector('form').addEventListener('submit',async (event)=>{
             password : event.target.new.value
         })
         alert(result.data.data)
-        window.location.href = `http://13.232.69.212/`;
+        window.location.href = `http://localhost:1000/`;
     }
     catch(e)
     {
